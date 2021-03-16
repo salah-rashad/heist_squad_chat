@@ -1,8 +1,8 @@
-const app = require('express')()
-const http = require('http').createServer(app)
-const io = require('socket.io')(http);
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-port = process.env.PORT || 5000;
+port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send("Node Server is running. Yay!!")

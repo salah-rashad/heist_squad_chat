@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "description": "Heist Squad game chat server",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
   "author": "Bemo",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "http": "0.0.1-security",
     "socket.io": "^4.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
