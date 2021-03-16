@@ -4,11 +4,11 @@ var io = require('socket.io')(http);
 
 port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send("Node Server is running. Yay!!")
-})
+// app.get('/', (req, res) => {
+//   res.send("Node Server is running. Yay!!")
+// })
 
-// io.on('connection', socket => {
+// io.on('connection', function (socket) {
 //   //Get the roomID of the user and join in a room of the same roomID
 //   roomID = socket.handshake.query.roomID
 //   socket.join(roomID)
@@ -35,12 +35,14 @@ app.get('/', (req, res) => {
 
 
 
-io.on("connection", (socket) => {
-  socket.on("joinRoom", (roomId, username) => {
-    socket.join(roomId);
+io.on("connection", function (client) {
+  console.log("Connected Client:: ", client);
+
+  client.on("joinRoom", (roomId, username) => {
+    client.join(roomId);
     io.to(roomId).emit("sendMessage", username + " joined room " + roomId);
   });
-  socket.on(
+  client.on(
     "sendMessage",
     (message, roomId, username) => {
       io.to(roomId).emit("sendMessage", message, username);
